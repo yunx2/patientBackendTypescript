@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "ts-node index.ts"
   },
   "keywords": [],
   "author": "",
