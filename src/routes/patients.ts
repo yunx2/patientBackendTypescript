@@ -1,7 +1,7 @@
 import express from 'express'
 
 import { getPatientDataWithoutSSN, addNewPatient } from '../services/patients'
-import { IncomingPatient } from '../types'
+import { toIncomingPatient } from '../utils'
 
 
 const router = express.Router()
@@ -11,16 +11,13 @@ router.get('/', (_req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { name, dateOfBirth, gender, ssn, occupation } = req.body
-  const patientData: IncomingPatient = {
-    name, 
-    dateOfBirth,
-    gender,
-    ssn,
-    occupation
+  try {
+    const incomingPatientData = toIncomingPatient(req.body)
+    const newPatient = addNewPatient(incomingPatientData) // add id
+    res.json(newPatient)
+  } catch (err) {
+    res.status(400).send(err.message)
   }
-  const newPatient = addNewPatient(patientData)
-  res.json(newPatient)
 })
 
 export default router
