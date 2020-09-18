@@ -1,23 +1,32 @@
 import patients from '../../data/patients'
 
-import { PublicPatient, Patient, IncomingPatient } from '../types'
+import { PublicPatient, Patient, IncomingPatient, Entry } from '../types'
 
-export const getPublicPatient = (): PublicPatient[] => {
+export const getPublicPatients = (): PublicPatient[] => {
+  const entries:Entry[] = []
   return patients.map(({id, name, dateOfBirth, gender, occupation}) => ({
     id,
     name,
     dateOfBirth,
     gender,
-    occupation
+    occupation,
+    entries
   }))
 }
 
 export const addNewPatient = (patientData: IncomingPatient): Patient => {
   const id = JSON.stringify(Math.floor(Math.random() * Math.floor(100000)))
+  const entries:Entry[] = [];
   const newPatient = {
     ...patientData,
-    id
+    id,
+    entries
   }
   patients.push(newPatient)
   return newPatient
 }
+
+export const getPatientById = (id: string): Patient | undefined=> {
+  const fetched = patients.find(patient => patient.id === id);
+  return fetched;
+} 

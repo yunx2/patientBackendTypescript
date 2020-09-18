@@ -1,15 +1,19 @@
 import express from 'express'
 
-import { getPublicPatient, addNewPatient } from '../services/patients'
+import { getPublicPatients, addNewPatient, getPatientById } from '../services/patients'
 import { toIncomingPatient } from '../utils'
 
 
 const router = express.Router()
 
 router.get('/', (_req, res) => {
-  res.send(getPublicPatient())
+  res.send(getPublicPatients())
 })
 
+router.get('/:id', (req, res) => {
+  const patientId = req.params.id;
+  res.send(getPatientById(patientId));
+})
 
 router.post('/', (req, res) => {
   try {

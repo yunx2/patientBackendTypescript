@@ -61,6 +61,6 @@ export const toIncomingPatient = (requestBody: any): IncomingPatient => {
     dateOfBirth: parseDateOfBirth(requestBody.dateOfBirth),
     gender: parseGender(requestBody.gender),
     ssn: parseSSN(requestBody.ssn),
-    occupation: parseOccupation(requestBody.occupation)
+    occupation: parseOccupation(requestBody.occupation),
   }
 } 
