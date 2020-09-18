@@ -1,8 +1,8 @@
 import patients from '../../data/patients'
 
-import { PatientWithoutSSN, Patient, IncomingPatient } from '../types'
+import { PublicPatient, Patient, IncomingPatient } from '../types'
 
-export const getPatientDataWithoutSSN = (): PatientWithoutSSN[] => {
+export const getPublicPatient = (): PublicPatient[] => {
   return patients.map(({id, name, dateOfBirth, gender, occupation}) => ({
     id,
     name,

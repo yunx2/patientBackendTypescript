@@ -1,14 +1,15 @@
 import express from 'express'
 
-import { getPatientDataWithoutSSN, addNewPatient } from '../services/patients'
+import { getPublicPatient, addNewPatient } from '../services/patients'
 import { toIncomingPatient } from '../utils'
 
 
 const router = express.Router()
 
 router.get('/', (_req, res) => {
-  res.send(getPatientDataWithoutSSN())
+  res.send(getPublicPatient())
 })
+
 
 router.post('/', (req, res) => {
   try {
