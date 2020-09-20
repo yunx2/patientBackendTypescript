@@ -26,7 +26,12 @@ export const addNewPatient = (patientData: IncomingPatient): Patient => {
   return newPatient
 }
 
-export const getPatientById = (id: string): Patient | undefined=> {
-  const fetched = patients.find(patient => patient.id === id);
-  return fetched;
+export const getPatientById = (patientId: string): Patient | undefined => {
+  const fetched = patients.find(patient => patient.id === patientId);
+  const entries: Entry[] = [];
+  const data = {
+    ...fetched, 
+    entries
+  }
+  return data as Patient;
 } 
